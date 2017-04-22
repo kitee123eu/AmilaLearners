@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form> 
+
+            <h:commandButton value="Display Message" action="#{testBacking.callingToDisplayMessage()}"/> <br></br>
+            <h:commandButton value="Calculate" action="#{testBackingCal.callingToCal()}"/><br></br>
+            <h:commandButton value="Display Parameter" action="#{testParameter.passData()}"/><br></br>
+            <h:commandButton value="Display Marks" action="#{testArray.marks()}"/><br></br>
+            <h:commandButton value="Display Total" action="#{testCal.marks()}"/><br></br>
+            <h:commandButton value="Display Vehicle" action="#{testArrayV.callingToDisplayList()}"/><br></br>
+            <h:commandButton value="Vehicle" action="#{vehicleBacking.callingToDisplayList()}"/><br></br>
+            <h:commandButton value="Vehicle2" action="#{vehicleBacking2.callToGetVehicleById()}"/><br></br>
+            <h:commandButton value="Vehicles" action="#{vehicleAgeBacking.callingToDisplayAge()}"/><br></br> <br></br>
+
+            <p:outputLabel for="regno" value="Reg No:" />
+            <p:inputText id="regno" value="#{teacher.regNo}" 
+                         placeholder="Reg No" required="true" label="RegNo" requiredMessage="Reg No is Required">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="regno" display="icon" />  <br></br>
+
+
+
+            <p:outputLabel for="teachername" value="Teacher Name:" />
+            <p:inputText id="teachername" value="#{teacher.name}" 
+                         placeholder="Teacher Name" required="true" label="TeacherName" requiredMessage="Teacher Name is Required">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="teachername" display="icon" />
+
+
+            <h:commandButton value="Save" action="#{teacherBacking.createTeacher()}"/><br></br>
+
+
+
+
+
+
+        </h:form>
+
+
+        <h:form>
+            <h:commandButton value="Profit" action="#{profitBacking.callingToDisplayNetProfit()}"/>
+
+            <h:commandButton value="Month" action="#{monthBacking.callingToDisplayMonth()}"/>
+
+            <h:commandButton value="Month Greater" action="#{greaterBacking.callingToDisplayMonths()}"/>
+
+            <h:commandButton value="Update Salary" action="#{employeeBacking.callingToUpdateSalary()}"/>
+
+            <h:commandButton value="Sinhala Novel" action="#{bookBacking.displaySinhalaNovel()}"/>
+
+
+            <h:commandButton value="Price 400" action="#{bookBacking.displayPrice400Novel()}"/>
+            
+            <h:commandButton value="bookcal" action="#{bookBacking.displayBookCal()}"/>
+            
+            <h:commandButton value="Max Pricebook" action="#{bookBacking.displayMaxPriceBook()}"/>
+
+<!--            <h:commandButton value="Min Pricebook" action="#}"/>-->
+            
+            <h:commandButton value="Sinhala Novel Category Amount" action="#{bookBacking.displaySinhalaNovelCategoryAmount()}"/>
+            
+            <h:commandButton value="Sinhala Novel Category Amount" action="#{bookBacking.displaySinhalaNovelCategoryAmountById()}"/>
+
+
+
+        </h:form>
+    </h:body>
+</html>
+

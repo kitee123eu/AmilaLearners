@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/WEB-INF/templates/adminTemplate/adminTemplate.xhtml">
+        <ui:define name="metadata">
+            <f:metadata>
+
+            </f:metadata>
+        </ui:define>
+
+        <ui:define name="title">License Class</ui:define>
+
+        <ui:define name="content">
+
+            <div id="page-wrapper">
+
+                <div class="row">
+                    <!-- Page Header -->
+                    <div class="col-lg-12">
+                        <h4 class="panel-title" style="color: #000;"><a href="#{request.contextPath}/protected/dashBoard.xhtml">Dashboard</a> >> 
+                            <a href="#{request.contextPath}/protected/admin/license_class/create.xhtml">New License Class</a></h4>
+                        <h1 class="page-header" style="color: #01AFD1;">Add New License Class</h1>
+                    </div>
+                    <!--End Page Header -->
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h:form>
+                            <p:panel id="panel" header="CREATE NEW LICENSE CLASS">
+
+                                <p:messages id="msgs" />
+
+                                <h:panelGrid columns="3" cellpadding="20" cellspacing="30">
+
+                                    <p:outputLabel for="class" value="Class:" />
+                                    <p:inputText id="class" value="#{licenseClass.class1}" 
+                                                 placeholder="Class" required="true" label="Class" 
+                                                 requiredMessage="Class is Required" size="40">
+                                        <f:validateLength minimum="2" />
+                                    </p:inputText>
+                                    <p:message for="class" display="icon" />
+
+                                    <p:outputLabel for="classdescription" value="Class Description:" />
+                                    <p:inputText id="classdescription" value="#{licenseClass.classDescription}" 
+                                                 placeholder="Class Description" required="true" label="Class Description" requiredMessage="Class Description is Required">
+                                        <f:validateLength minimum="2" />
+                                    </p:inputText>
+                                    <p:message for="classdescription" display="icon" />
+
+                                    <p:outputLabel for="totalfee" value="Total Fee:" />
+                                    <p:inputNumber id="totalfee" value="#{licenseClass.totalFee}" 
+                                                   required="true" label="Total Fee" requiredMessage="Amount is Required">
+                                        <f:validateLength minimum="2" />
+                                    </p:inputNumber> 
+                                    <p:message for="totalfee" display="icon" />
+
+                                    <p:outputLabel for="basicfee" value="Basic Fee:" />
+                                    <p:inputNumber id="basicfee" value="#{licenseClass.basicFee}" 
+                                                   required="true" label="Basic Fee" requiredMessage="Amount is Required">
+                                        <f:validateLength minimum="2" />
+                                    </p:inputNumber> 
+                                    <p:message for="basicfee" display="icon" />
+
+
+                                </h:panelGrid>
+
+                                <p:commandButton value="Save" update="panel" oncomplete="setTimeout(function(){$('[id$=msgs]').fadeOut()},'5000')"
+                                                 actionListener="#{licenseClassAddBacking.createLicenseClass()}" icon="ui-icon-check" style="margin-top:5px"/>
+
+                            </p:panel>
+
+                            <div class="form-group">
+                                <h:link value="Back" class="fa fa-arrow-circle-left" outcome="list"/>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+
+    </ui:composition>
+</html>
+

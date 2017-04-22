@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/WEB-INF/templates/adminTemplate/adminTemplate.xhtml">
+<ui:define name="metadata">
+            <f:metadata>
+
+            </f:metadata>
+        </ui:define>
+
+        <ui:define name="title">New Category</ui:define>
+
+        <ui:define name="content">
+
+            <div id="page-wrapper">
+
+                <div class="row">
+                    <!-- Page Header -->
+                    <div class="col-lg-12">
+                        <h1 class="page-header" style="color: #01AFD1;">Add New Category</h1>
+                    </div>
+                    <!--End Page Header -->
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h:form>
+                            <p:panel id="panel" header="CREATE NEW CATEGORY">
+
+                                <p:messages id="msgs" />
+
+                                <h:panelGrid columns="2" cellpadding="15" cellspacing="30">
+
+                                    <p:outputLabel for="categoryname" value="Category Name:" />
+                                    <p:inputText id="categoryname" value="#{category.categoryName}" 
+                                                 placeholder="Category Name" required="true" label="CategoryName" requiredMessage="Category Name is Required">
+                                        <f:validateLength minimum="2" />
+                                    </p:inputText>
+                                    <p:message for="categoryname" display="icon" />
+
+                                </h:panelGrid>
+
+                                <p:commandButton value="Save" update="panel" oncomplete="setTimeout(function(){$('[id$=msgs]').fadeOut()},'5000')"
+                                                 actionListener="#{categoryAddBacking.createCategory}" icon="ui-icon-check" style="margin-top:5px"/>
+                            </p:panel>
+                            <div class="form-group">
+                                <h:link value="Back" class="fa fa-arrow-circle-left" outcome="list"/>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+       
+   </ui:composition>
+</html>
+
