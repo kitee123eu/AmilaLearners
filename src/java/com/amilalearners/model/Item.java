@@ -6,17 +6,16 @@
 package com.amilalearners.model;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -26,12 +25,12 @@ import javax.validation.constraints.Size;
  * @author Toshiba
  */
 @Entity
-@Table(name = "category")
+@Table(name = "item")
 @NamedQueries({
-    @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c"),
-    @NamedQuery(name = "Category.findById", query = "SELECT c FROM Category c WHERE c.id = :id"),
-    @NamedQuery(name = "Category.findByCategoryName", query = "SELECT c FROM Category c WHERE c.categoryName = :categoryName")})
-public class Category implements Serializable {
+    @NamedQuery(name = "Item.findAll", query = "SELECT i FROM Item i"),
+    @NamedQuery(name = "Item.findById", query = "SELECT i FROM Item i WHERE i.id = :id"),
+    @NamedQuery(name = "Item.findByItemName", query = "SELECT i FROM Item i WHERE i.itemName = :itemName")})
+public class Item implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,23 +40,22 @@ public class Category implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 40)
-    @Column(name = "categoryName")
-    private String categoryName;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId")
-    private List<Movie> movieList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId")
-    private List<Item> itemList;
+    @Column(name = "itemName")
+    private String itemName;
+    @JoinColumn(name = "categoryId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Category categoryId;
 
-    public Category() {
+    public Item() {
     }
 
-    public Category(Integer id) {
+    public Item(Integer id) {
         this.id = id;
     }
 
-    public Category(Integer id, String categoryName) {
+    public Item(Integer id, String itemName) {
         this.id = id;
-        this.categoryName = categoryName;
+        this.itemName = itemName;
     }
 
     public Integer getId() {
@@ -68,28 +66,20 @@ public class Category implements Serializable {
         this.id = id;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
-    public List<Movie> getMovieList() {
-        return movieList;
+    public Category getCategoryId() {
+        return categoryId;
     }
 
-    public void setMovieList(List<Movie> movieList) {
-        this.movieList = movieList;
-    }
-
-    public List<Item> getItemList() {
-        return itemList;
-    }
-
-    public void setItemList(List<Item> itemList) {
-        this.itemList = itemList;
+    public void setCategoryId(Category categoryId) {
+        this.categoryId = categoryId;
     }
 
     @Override
@@ -102,10 +92,10 @@ public class Category implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Category)) {
+        if (!(object instanceof Item)) {
             return false;
         }
-        Category other = (Category) object;
+        Item other = (Item) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -114,7 +104,7 @@ public class Category implements Serializable {
 
     @Override
     public String toString() {
-        return "com.amilalearners.model.Category[ id=" + id + " ]";
+        return "com.amilalearners.model.Item[ id=" + id + " ]";
     }
     
 }

@@ -6,7 +6,9 @@
 package com.amilalearners.model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -56,6 +59,8 @@ public class LicenseClass implements Serializable {
     @NotNull
     @Column(name = "basic_Fee")
     private long basicFee;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "licenseClassId")
+    private List<LicenseApplied> licenseAppliedList;
 
     public LicenseClass() {
     }
@@ -110,6 +115,14 @@ public class LicenseClass implements Serializable {
 
     public void setBasicFee(long basicFee) {
         this.basicFee = basicFee;
+    }
+
+    public List<LicenseApplied> getLicenseAppliedList() {
+        return licenseAppliedList;
+    }
+
+    public void setLicenseAppliedList(List<LicenseApplied> licenseAppliedList) {
+        this.licenseAppliedList = licenseAppliedList;
     }
 
     @Override

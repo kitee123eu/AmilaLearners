@@ -39,6 +39,7 @@
 
                                 <h:panelGrid columns="3" cellpadding="120" cellspacing="150">
 
+
                                     <p:outputLabel for="namewithinitials" value="Name With Initials:" />
                                     <p:inputText id="namewithinitials" value="#{trainee.nameWithInitials}" 
                                                  placeholder="Name With Initials" required="true" label="Name With Initials" requiredMessage="Field is Required">
@@ -141,6 +142,120 @@
                                         <f:validateLength minimum="2" />
                                     </p:inputText>
                                     <p:message for="permanentAddressLine2" display="icon" />
+
+                                    <p:outputLabel for="permanentAddressLine3" value="Permanent Address Line 3:" />
+                                    <p:inputText id="permanentAddressLine3" value="#{trainee.permanentAddressLine3}" 
+                                                 placeholder="Permanent Address Line3" required="true" label="Permanent Address Line3" requiredMessage="">
+                                        <f:validateLength minimum="2" />
+                                    </p:inputText>
+                                    <p:message for="permanentAddressLine3" display="icon" />
+
+                                    <p:outputLabel for="contactAddressLine1" value="contact Address Line 1:" />
+                                    <p:inputText id="contactAddressLine1" value="#{trainee.contactAddressLine1}" 
+                                                 placeholder="contact Address Line1" required="true" label="contact Address Line1" requiredMessage="">
+                                        <f:validateLength minimum="2" />
+                                    </p:inputText>
+                                    <p:message for="contactAddressLine1" display="icon" />
+
+                                    <p:outputLabel for="contactAddressLine2" value="contact Address Line 2:" />
+                                    <p:inputText id="contactAddressLine2" value="#{trainee.contactAddressLine2}" 
+                                                 placeholder="contact Address Line2" required="true" label="contact Address Line2" requiredMessage="">
+                                        <f:validateLength minimum="2" />
+                                    </p:inputText>
+                                    <p:message for="contactAddressLine2" display="icon" />
+
+                                    <p:outputLabel for="contactAddressLine3" value="contact Address Line 3:" />
+                                    <p:inputText id="contactAddressLine3" value="#{trainee.contactAddressLine3}" 
+                                                 placeholder="contact Address Line3" required="true" label="contact Address Line3" requiredMessage="">
+                                        <f:validateLength minimum="2" />
+                                    </p:inputText>
+                                    <p:message for="contactAddressLine3" display="icon" />
+
+                                    <p:outputLabel for="city" value="City:" />
+                                    <p:inputText id="city" value="#{trainee.city}" 
+                                                 placeholder="City" required="true" label="City" requiredMessage="City is Required">
+                                        <f:validateLength minimum="2" />
+                                    </p:inputText>
+                                    <p:message for="city" display="icon" />
+
+                                    <p:outputLabel for="district" value="District:" />
+                                    <p:inputText id="district" value="#{trainee.district}" 
+                                                 placeholder="District" required="true" label="District" requiredMessage="District is Required">
+                                        <f:validateLength minimum="2" />
+                                    </p:inputText>
+                                    <p:message for="district" display="icon" />
+
+                                    <p:outputLabel for="divisionalSecretariatOffice" value="Divisional Secretariat Office :" />
+                                    <p:inputText id="divisionalSecretariatOffice" value="#{trainee.divisionalSecretariatOffice}" 
+                                                 placeholder="Divisional Secretariat Office" required="true" label="Divisional Secretariat Office" 
+                                                 requiredMessage="Divisional Secretariat Office is Required">
+                                        <f:validateLength minimum="2" />
+                                    </p:inputText>
+                                    <p:message for="divisionalSecretariatOffice" display="icon" />
+
+                                    <p:outputLabel for="nearestPoliceStation" value="Nearest Police Station :" />
+                                    <p:inputText id="nearestPoliceStation" value="#{trainee.nearestPoliceStation}" 
+                                                 placeholder="Nearest Police Station" required="true" label="Nearest Police Station" 
+                                                 requiredMessage="Nearest Police Station is Required">
+                                        <f:validateLength minimum="2" />
+                                    </p:inputText>
+                                    <p:message for="nearestPoliceStation" display="icon" />
+
+                                    <p:outputLabel for="classApplying" value="Class Applying :" />
+                                    <p:inputText id="classApplying" value="#{trainee.classApplying}" 
+                                                 placeholder="Class Applying" required="true" label="Class Applying" 
+                                                 requiredMessage="Class Applying is Required">
+                                        <f:validateLength minimum="2" />
+                                    </p:inputText>
+                                    <p:message for="classApplying" display="icon" />
+
+                                    <p:outputLabel for="alreadyHavingLicense" value="Already Having License:" />
+                                    <p:selectOneRadio id="alreadyHavingLicense" value="#{trainee.alreadyHavingLicense}">
+                                        <f:selectItem itemLabel="Yes" itemValue="Yes" />
+                                        <f:selectItem itemLabel="No" itemValue="No" />
+                                    </p:selectOneRadio>
+                                    <p:message for="alreadyHavingLicense" display="icon" />
+
+
+                                    <p:outputLabel for="licenseNo" value="License No :" />
+                                    <p:inputText id="licenseNo" value="#{trainee.licenseNo}" 
+                                                 placeholder="License No" required="true" label="License No" 
+                                                 requiredMessage="">
+                                        <f:validateLength minimum="2" />
+                                    </p:inputText>
+                                    <p:message for="licenseNo" display="icon" />
+
+                                    <p:outputLabel for="classes" value="Classes :" />
+                                    <p:inputText id="classes" value="#{trainee.classes}" 
+                                                 placeholder="Classes" required="true" label="Classes" 
+                                                 requiredMessage="">
+                                        <f:validateLength minimum="2" />
+                                    </p:inputText>
+                                    <p:message for="classes" display="icon" />
+
+                                    <p:outputLabel for="dateofissued" value="Date Of Issued:" />
+                                    <p:calendar id="dateofissued" value="#{trainee.dateOfIssued}" mask="99/99/9999"
+                                                required="true" label="Date Of Issued" requiredMessage="Date Of Issued is Required"/>
+                                    <p:message for="dateofissued" display="icon" />
+
+                                    <p:outputLabel for="dateofexpire" value="Date Of Expire:" />
+                                    <p:calendar id="dateofexpire" value="#{trainee.dateOfExpire}" mask="99/99/9999"
+                                                required="true" label="Date Of Expire" requiredMessage="Date Of Expire is Required"/>
+                                    <p:message for="dateofexpire" display="icon" />
+
+
+                                    <p:outputLabel for="registeredDate" value="Registered Date:" />
+                                    <p:calendar id="registeredDate" value="#{trainee.registeredDate}" mask="99/99/9999"
+                                                required="true" label="Registered Date" requiredMessage="Registered Date is Required"/>
+                                    <p:message for="registeredDate" display="icon" />
+
+
+
+
+
+
+
+
 
 
 

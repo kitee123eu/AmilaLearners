@@ -7,7 +7,9 @@ package com.amilalearners.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +19,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -71,6 +74,10 @@ public class Vehicle implements Serializable {
     @JoinColumn(name = "categoryId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private VehicleCategory categoryId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vehicleId")
+    private List<VehicleService> vehicleServiceList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vehicleId")
+    private List<Fuel> fuelList;
 
     public Vehicle() {
     }
@@ -142,6 +149,22 @@ public class Vehicle implements Serializable {
 
     public void setCategoryId(VehicleCategory categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public List<VehicleService> getVehicleServiceList() {
+        return vehicleServiceList;
+    }
+
+    public void setVehicleServiceList(List<VehicleService> vehicleServiceList) {
+        this.vehicleServiceList = vehicleServiceList;
+    }
+
+    public List<Fuel> getFuelList() {
+        return fuelList;
+    }
+
+    public void setFuelList(List<Fuel> fuelList) {
+        this.fuelList = fuelList;
     }
 
     @Override

@@ -7,7 +7,9 @@ package com.amilalearners.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -55,12 +58,13 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Trainee.findByClassApplying", query = "SELECT t FROM Trainee t WHERE t.classApplying = :classApplying"),
     @NamedQuery(name = "Trainee.findByAlreadyHavingLicense", query = "SELECT t FROM Trainee t WHERE t.alreadyHavingLicense = :alreadyHavingLicense"),
     @NamedQuery(name = "Trainee.findByLicenseNo", query = "SELECT t FROM Trainee t WHERE t.licenseNo = :licenseNo"),
-    @NamedQuery(name = "Trainee.findByClass1", query = "SELECT t FROM Trainee t WHERE t.class1 = :class1"),
+    @NamedQuery(name = "Trainee.findByClasses", query = "SELECT t FROM Trainee t WHERE t.classes = :classes"),
     @NamedQuery(name = "Trainee.findByDateOfIssued", query = "SELECT t FROM Trainee t WHERE t.dateOfIssued = :dateOfIssued"),
     @NamedQuery(name = "Trainee.findByDateOfExpire", query = "SELECT t FROM Trainee t WHERE t.dateOfExpire = :dateOfExpire"),
     @NamedQuery(name = "Trainee.findByDocumentIssuedId", query = "SELECT t FROM Trainee t WHERE t.documentIssuedId = :documentIssuedId"),
     @NamedQuery(name = "Trainee.findByClassId", query = "SELECT t FROM Trainee t WHERE t.classId = :classId"),
-    @NamedQuery(name = "Trainee.findByRegisteredDate", query = "SELECT t FROM Trainee t WHERE t.registeredDate = :registeredDate")})
+    @NamedQuery(name = "Trainee.findByRegisteredDate", query = "SELECT t FROM Trainee t WHERE t.registeredDate = :registeredDate"),
+    @NamedQuery(name = "Trainee.findByStatus", query = "SELECT t FROM Trainee t WHERE t.status = :status")})
 public class Trainee implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -179,8 +183,8 @@ public class Trainee implements Serializable {
     @Column(name = "licenseNo")
     private String licenseNo;
     @Size(max = 75)
-    @Column(name = "class")
-    private String class1;
+    @Column(name = "classes")
+    private String classes;
     @Column(name = "dateOfIssued")
     @Temporal(TemporalType.DATE)
     private Date dateOfIssued;
@@ -200,6 +204,16 @@ public class Trainee implements Serializable {
     @Column(name = "registeredDate")
     @Temporal(TemporalType.DATE)
     private Date registeredDate;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "status")
+    private int status;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "traineeId")
+    private List<TrialSchedule> trialScheduleList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "traineeId")
+    private List<LicenseApplied> licenseAppliedList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "traineeId")
+    private List<ClientNotification> clientNotificationList;
 
     public Trainee() {
     }
@@ -208,7 +222,7 @@ public class Trainee implements Serializable {
         this.id = id;
     }
 
-    public Trainee(Integer id, String nameWithInitials, String fullName, Date dateOfBirth, String gender, String civilStatus, String nicNo, double inches, int weightKg, String contact1, String email, String permanentAddressLine1, String permanentAddressLine2, String city, String district, String divisionalSecretariatOffice, String nearestPoliceStation, String classApplying, String alreadyHavingLicense, int documentIssuedId, int classId, Date registeredDate) {
+    public Trainee(Integer id, String nameWithInitials, String fullName, Date dateOfBirth, String gender, String civilStatus, String nicNo, double inches, int weightKg, String contact1, String email, String permanentAddressLine1, String permanentAddressLine2, String city, String district, String divisionalSecretariatOffice, String nearestPoliceStation, String classApplying, String alreadyHavingLicense, int documentIssuedId, int classId, Date registeredDate, int status) {
         this.id = id;
         this.nameWithInitials = nameWithInitials;
         this.fullName = fullName;
@@ -231,6 +245,7 @@ public class Trainee implements Serializable {
         this.documentIssuedId = documentIssuedId;
         this.classId = classId;
         this.registeredDate = registeredDate;
+        this.status = status;
     }
 
     public Integer getId() {
@@ -441,12 +456,12 @@ public class Trainee implements Serializable {
         this.licenseNo = licenseNo;
     }
 
-    public String getClass1() {
-        return class1;
+    public String getClasses() {
+        return classes;
     }
 
-    public void setClass1(String class1) {
-        this.class1 = class1;
+    public void setClasses(String classes) {
+        this.classes = classes;
     }
 
     public Date getDateOfIssued() {
@@ -487,6 +502,38 @@ public class Trainee implements Serializable {
 
     public void setRegisteredDate(Date registeredDate) {
         this.registeredDate = registeredDate;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public List<TrialSchedule> getTrialScheduleList() {
+        return trialScheduleList;
+    }
+
+    public void setTrialScheduleList(List<TrialSchedule> trialScheduleList) {
+        this.trialScheduleList = trialScheduleList;
+    }
+
+    public List<LicenseApplied> getLicenseAppliedList() {
+        return licenseAppliedList;
+    }
+
+    public void setLicenseAppliedList(List<LicenseApplied> licenseAppliedList) {
+        this.licenseAppliedList = licenseAppliedList;
+    }
+
+    public List<ClientNotification> getClientNotificationList() {
+        return clientNotificationList;
+    }
+
+    public void setClientNotificationList(List<ClientNotification> clientNotificationList) {
+        this.clientNotificationList = clientNotificationList;
     }
 
     @Override
